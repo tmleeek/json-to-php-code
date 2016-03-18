@@ -19,27 +19,27 @@ $json = '{
      ],
     "Members": {
       "Recipients": [
-      	{
-      		"Action":"Remove",
-      		"Value": 1
-      	},
-      	{
-      		"Action":"Add",
-      		"Value":"mexuser3"
-      	}
+        {
+          "Action":"Remove",
+          "Value": 1
+        },
+        {
+          "Action":"Add",
+          "Value":"mexuser3"
+        }
        ]
     },
     "AcceptMessagesOnlyFrom": {
         "All":"restricted",
         "Recipients": [
-      	{
-      		"Action":"Remove",
-      		"Value":"mexuser3"
-      	},
-      	{
-      		"Action":"Add",
-      		"Value":"mexuser2"
-      	}
+        {
+          "Action":"Remove",
+          "Value":"mexuser3"
+        },
+        {
+          "Action":"Add",
+          "Value":"mexuser2"
+        }
       ]
    }
 }
@@ -66,28 +66,28 @@ function print_boolean($condition){
  }
 
 function process_json($data, $step){
-	foreach($data as $key => $value){
-		if(is_array($value)){
+  foreach($data as $key => $value){
+    if(is_array($value)){
       if(!is_multidimensional_array($value)){
         echo str_repeat("\t", $step) . 'array (' . "\n";
-  			process_json($value, $step + 1);
-  			echo str_repeat("\t", $step) . ")," . "\n";
+        process_json($value, $step + 1);
+        echo str_repeat("\t", $step) . ")," . "\n";
       } else{
         echo str_repeat("\t", $step) . '"' . $key . '" => array (' . "\n";
         process_json($value, $step + 1);
         echo str_repeat("\t", $step) . ")," . "\n";
       }
-		}
+    }
     else{
-			if(is_bool($value)){
-				echo str_repeat("\t", $step) . '"' . $key . '" => ' . print_boolean($value) . ',' . "\n";
-			} elseif(is_numeric($value)){
+      if(is_bool($value)){
+        echo str_repeat("\t", $step) . '"' . $key . '" => ' . print_boolean($value) . ',' . "\n";
+      } elseif(is_numeric($value)){
         echo str_repeat("\t", $step) . '"' . $key . '" => ' . $value . ',' . "\n";
       } else{
-				echo str_repeat("\t", $step) . '"' . $key . '" => "' . $value . '",' . "\n";
-			}
-		}
-	}
+        echo str_repeat("\t", $step) . '"' . $key . '" => "' . $value . '",' . "\n";
+      }
+    }
+  }
 }
 
 echo "\$value = array(\n";
